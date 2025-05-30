@@ -1,0 +1,87 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 20px;
+}
+.calculator {
+    background: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+.header {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+th {
+    background-color: #f7f7f7;
+}
+.status-ok {
+    color: #4caf50;
+}
+.status-error {
+    color: #f44336;
+}
+.resource-cell {
+    position: relative;
+}
+.toggle-btn {
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 16px;
+}
+.buttons-row {
+    text-align: center;
+}
+.action-btn {
+    margin: 5px;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.action-btn:hover {
+    background-color: #0056b3;
+}
+.sync-status {
+    margin-top: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+.sync-success {
+    color: #2e7d32;
+}
+.sync-error {
+    color: #c62828;
+}
+input[type=number] {
+    width: 80px;
+    text-align: center;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+.sub-row, .sub-sub-row {
+    display: none;
+}
+.visible {
+    display: table-row;
+}

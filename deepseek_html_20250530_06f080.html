@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор гравировки (Firebase Sync)</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="calculator">
+        <div class="header">
+            ⚔️ КАЛЬКУЛЯТОР ГРАВИРОВКИ (FIREBASE SYNC) ⚔️
+        </div>
+        <table>
+            <tr>
+                <th colspan="6">
+                    <span class="count-label">Количество гравировок:</span>
+                    <input type="number" id="itemCount" class="count-input" value="1" min="1">
+                </th>
+            </tr>
+            <tr>
+                <th class="resource-cell">Ресурсы</th>
+                <th class="player1">Opiumgangprince</th>
+                <th class="player2">Prizrak</th>
+                <th class="total">Всего</th>
+                <th class="needed">Нужно</th>
+                <th class="status">Статус</th>
+            </tr>
+            <!-- Основные ресурсы -->
+            <tr id="alloyRow">
+                <td class="resource-cell">
+                    <div class="resource-name">
+                        <button class="toggle-btn" data-resource="alloy">📦</button>
+                        <span class="resource-icon">⚙️</span> Прочный сплав
+                    </div>
+                </td>
+                <td><input type="number" class="input-field" id="alloy_p1" value="0" min="0"></td>
+                <td><input type="number" class="input-field" id="alloy_p2" value="0" min="0"></td>
+                <td class="total" id="alloy_total">0</td>
+                <td class="needed" id="alloy_needed">40</td>
+                <td class="status-error" id="alloy_status">❌</td>
+            </tr>
+            <!-- Компоненты для прочного сплава -->
+            <tr class="sub-row alloy-components">
+                <td class="resource-cell">
+                    <div class="resource-name">
+                        <button class="toggle-btn" data-resource="iron">📦</button>
+                        <span class="resource-icon">🔩</span> Железный слиток
+                    </div>
+                </td>
+                <td><input type="number" class="input-field" id="ironBar_p1" value="0" min="0"></td>
+                <td><input type="number" class="input-field" id="ironBar_p2" value="0" min="0"></td>
+                <td class="total" id="ironBar_total">0</td>
+                <td class="needed" id="ironBar_needed">8</td>
+                <td class="status-error" id="ironBar_status">❌</td>
+            </tr>
+            <!-- Железная руда -->
+            <tr class="sub-sub-row iron-components">
+                <td class="resource-cell"><span class="resource-icon">⛏️</span> Железная руда</td>
+                <td><input type="number" class="input-field" id="ironOre_p1" value="0" min="0"></td>
+                <td><input type="number" class="input-field" id="ironOre_p2" value="0" min="0"></td>
+                <td class="total" id="ironOre_total">0</td>
+                <td class="needed" id="ironOre_needed">3</td>
+                <td class="status-error" id="ironOre_status">❌</td>
+            </tr>
+            <tr class="sub-row alloy-components">
+                <td class="resource-cell">
+                    <div class="resource-name">
+                        <button class="toggle-btn" data-resource="copper">📦</button>
+                        <span class="resource-icon">🟠</span> Медный слиток
+                    </div>
+                </td>
+                <td><input type="number" class="input-field" id="copperBar_p1" value="0" min="0"></td>
+                <td><input type="number" class="input-field" id="copperBar_p2" value="0" min="0"></td>
+                <td class="total" id="copperBar_total">0</td>
+                <td class="needed" id="copperBar_needed">1</td>
+                <td class="status-error" id="copperBar_status">❌</td>
+            </tr>
+            <!-- Медная руда -->
+            <tr class="sub-sub-row copper-components">
+                <td class="resource-cell"><span class="resource-icon">⛏️</span> Медная руда</td>
+                <td><input type="number" class="input-field" id="copperOre_p1" value="0" min="0"></td>
+                <td><input type="number" class="input-field" id="copperOre_p2" value="0" min="0"></td>
+                <td class="total" id="copperOre_total">0</td>
+                <td class="needed" id="copperOre_needed">3</td>
+                <td class="status-error" id="copperOre_status">❌</td>
+            </tr>
+            <!-- Other resources... -->
+            <tr id="glassRow">
+                <td class="resource-cell"><span class="resource-icon">🔵</span> Эмалевое стекло</td>
+                <td><input type="number" class="input-field" id="glass_p1" value="0" min="0"></td>
+                <td><input type="number" class="input-field" id="glass_p2" value="0" min="0"></td>
+                <td class="total" id="glass_total">0</td>
+                <td class="needed" id="glass_needed">50</td>
+                <td class="status-error" id="glass_status">❌</td>
+            </tr>
+
+            <tr id="gravaRow">
+                <td class="resource-cell"><span class="resource-icon">💎</span> Хонор грава</td>
+                <td><input type="number" class="input-field" id="grava_p1" value="0" min="0"></td>
+                <td><input type="number" class="input-field" id="grava_p2" value="0" min="0"></td>
+                <td class="total" id="grava_total">0</td>
+                <td class="needed" id="grava_needed">1</td>
+                <td class="status-error" id="grava_status">❌</td>
+            </tr>
+        </table>
+
+        <div class="buttons-row">
+            <button class="action-btn" id="saveLocal">💾 Сохранить локально</button>
+            <button class="action-btn" id="loadLocal">📂 Загрузить локально</button>
+            <button class="action-btn" id="resetData">🔄 Сбросить</button>
+            <button class="action-btn" id="saveFirebase">☁️ Сохранить в Firebase</button>
+            <button class="action-btn" id="loadFirebase">🌩 Загрузить из Firebase</button>
+        </div>
+        <div id="syncStatus" class="sync-status"></div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
